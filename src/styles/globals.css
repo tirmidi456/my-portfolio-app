@@ -52,3 +52,10 @@ form button {
   margin-top: 6px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+  color: #00c6ff;
+  font-weight: 800;
+}
