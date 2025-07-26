@@ -1,0 +1,37 @@
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #00c6ff 0%, #007bff 100%);
+  }
+  
+  .card {
+    background: #fff;
+    padding: 48px;
+    border-radius: 16px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+    min-width: 380px;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 32px;
+    margin-bottom: 16px;
+    color: #00c6ff;
+    font-weight: 800;
+  }
+  
+  h2 {
+    font-size: 22px;
+    margin-bottom: 32px;
+    color: #222;
+    font-weight: 600;
+  }
+  
+  p {
+    font-size: 18px;
+    color: #444;
+  }
+  
