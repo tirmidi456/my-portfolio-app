@@ -33,10 +33,11 @@ const Auth = () => {
       try {
         const res = await axios.post('/api/auth/login', { username, password });
         localStorage.setItem('token', res.data.token);
+        localStorage.setItem('username', res.data.username); // Store username
         setSuccess('Login successful!');
         setTimeout(() => {
           setSuccess('');
-          router.push('/portfolio');
+          router.push('/account'); // Redirect to account page
         }, 500);
       } catch (err) {
         setError(err.response?.data?.message || 'Login failed');

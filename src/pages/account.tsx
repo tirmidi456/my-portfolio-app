@@ -16,10 +16,16 @@ const Account = () => {
   const [username, setUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [localUsername, setLocalUsername] = useState<string | null>(null); // New state for local username
   const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const storedUsername = localStorage.getItem('username'); // Get username from localStorage
+    if (storedUsername) {
+      setLocalUsername(storedUsername);
+    }
+
     if (!token) {
       router.push('/auth');
       return;
@@ -34,6 +40,7 @@ const Account = () => {
       })
       .catch(() => {
         localStorage.removeItem('token');
+        localStorage.removeItem('username'); // Also remove username on error
         router.push('/auth');
       });
   }, [router]);
@@ -61,6 +68,8 @@ const Account = () => {
       setConfirmPassword('');
       setUser(res.data);
       setUsername(res.data.username); // Explicitly update username state
+      localStorage.setItem('username', res.data.username); // Update username in localStorage
+      setLocalUsername(res.data.username); // Update local state
     } catch (err) {
       setError(err.response?.data?.message || 'Update failed');
     }
@@ -68,6 +77,7 @@ const Account = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('username'); // Remove username on logout
     router.push('/auth');
   };
 
@@ -76,6 +86,10 @@ const Account = () => {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
+        {localUsername && <h2>Welcome {localUsername} to Tirmidi's Portfolio!</h2>}
+        <div className={styles.actions} style={{ justifyContent: 'center', marginBottom: '1rem' }}>
+          <button onClick={() => router.push('/portfolio')}>Show Portfolio</button>
+        </div>
         <h2>Account</h2>
         <div className={styles.info}>
           <div>Username: {user.username}</div>
@@ -83,6 +97,7 @@ const Account = () => {
         </div>
         <div className={styles.actions}>
           <button onClick={() => setEdit(!edit)}>{edit ? 'Cancel' : 'Edit Account'}</button>
+          <button onClick={() => router.push('/admin/add-portfolio')}>Add Portfolio Item</button>
           <button onClick={handleLogout}>Logout</button>
         </div>
         {edit && (
