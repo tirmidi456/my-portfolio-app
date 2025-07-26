@@ -1,46 +1,65 @@
-
 .container {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #007bff 0%, #00c6ff 100%);
-  }
-  
-  .card {
-    background: #fff;
-    padding: 48px;
-    border-radius: 16px;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.12);
-    min-width: 380px;
-    text-align: center;
-  }
-  
-  .title {
-    font-size: 36px;
-    margin-bottom: 16px;
-    color: #007bff;
-    font-weight: 800;
-  }
-  
-  .subtitle {
-    font-size: 22px;
-    margin-bottom: 32px;
-    color: #222;
-    font-weight: 600;
-  }
-  
-  
-  
-  .button {
-    padding: 12px 36px;
-    font-size: 18px;
-    border-radius: 8px;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    font-weight: 700;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
-  
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); /* Modern gradient */
+  padding: 1rem;
+}
+
+.card {
+  background: #fff;
+  padding: 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+  min-width: 400px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 70%);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #343a40; /* Darker for contrast */
+  font-weight: 800;
+  letter-spacing: -0.05rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+  color: #6c757d; /* Softer color */
+  font-weight: 500;
+}
+
+.button {
+  padding: 0.8rem 2.5rem;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 123, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 123, 255, 0.3);
+}

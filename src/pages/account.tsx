@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -49,10 +48,10 @@ const Account = () => {
     }
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.put('/api/account', {
+      const res = await axios.put('/api/user/update', {
         username,
         password: newPassword ? newPassword : undefined,
-        confirmPassword
+        currentPassword: confirmPassword
       }, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -61,6 +60,7 @@ const Account = () => {
       setNewPassword('');
       setConfirmPassword('');
       setUser(res.data);
+      setUsername(res.data.username); // Explicitly update username state
     } catch (err) {
       setError(err.response?.data?.message || 'Update failed');
     }
@@ -79,7 +79,7 @@ const Account = () => {
         <h2>Account</h2>
         <div className={styles.info}>
           <div>Username: {user.username}</div>
-          <div>Created At: {new Date(user.createdAt).toLocaleString()}</div>
+          <div>Created At: {user.createdAt ? new Date(user.createdAt).toLocaleString() : 'N/A'}</div>
         </div>
         <div className={styles.actions}>
           <button onClick={() => setEdit(!edit)}>{edit ? 'Cancel' : 'Edit Account'}</button>
